@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <fstream>
 #include <utility>
@@ -9,7 +11,7 @@
 enum FigureType {
     rec,
     rhomb,
-    trap
+    trap,
 };
 
 class Figure{
