@@ -1,4 +1,7 @@
+#pragma once
+
 #include"figures.h"
+
 
 
 class Rectangle : public Figure {

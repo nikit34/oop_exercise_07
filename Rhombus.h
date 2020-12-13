@@ -1,3 +1,5 @@
+#pragma once
+
 #include "figures.h"
 
 
@@ -5,7 +7,7 @@
 class Rhombus: public Figure {
 public:
     Rhombus() : id{0}, vertices{new std::pair<double, double>[4]} {
-        for (uint16_t i = 0; i < 4; i++){
+        for (uint16_t i = 0; i < 4; ++i){
             this->vertices[i] = {0, 0};
         }
     }
@@ -50,7 +52,7 @@ public:
         out << "id: " << id << "\n";
         out << "Figure: Trapezoid\n";
         out << "Coords:\n";
-        for (uint16_t i = 0; i < 4; i++) {
+        for (uint16_t i = 0; i < 4; ++i) {
             out << vertices[i] << "\n";
         }
         return out;
@@ -60,7 +62,7 @@ public:
         FigureType type = Rhomb;
         os.write((char *) &type, sizeof(type));
         os.write((char *) &id, sizeof(id));
-        for (uint16_t i = 0; i < 4; i++) {
+        for (uint16_t i = 0; i < 4; ++i) {
             os.write((char *) &(vertices[i].first),sizeof(vertices[i].first));
             os.write((char *) &(vertices[i].second),sizeof(vertices[i].second));
         }
@@ -68,7 +70,7 @@ public:
 
     void Deserialize(std::ifstream &is) override {
         is.read((char *) &id, sizeof(id));
-        for (uint16_t i = 0; i < 4; i++) {
+        for (uint16_t i = 0; i < 4; ++i) {
             is.read((char *) &(vertices[i].first),
                     sizeof(vertices[i].first));
             is.read((char *) &(vertices[i].second),

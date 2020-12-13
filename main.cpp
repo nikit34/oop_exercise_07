@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+
 #include "editor.h"
 
 
@@ -93,7 +94,7 @@ void add(Editor &editor) {
     }
     else if (type == "trap") {
         std::cout << "Enter the coordinates separated by space: ";
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; ++i) {
             std::cin >> vertices[i];
         }
         try {
@@ -110,7 +111,7 @@ void add(Editor &editor) {
     }
     else if (type == "rhomb") {
         std::cout << "Enter the coordinates separated by a space: ";
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; ++i) {
             std::cin >> vertices[i];
         }
         try {
