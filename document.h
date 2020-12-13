@@ -80,9 +80,8 @@ private:
         size_t len_name = this->name.size();
         os.write((char *) &len_name, sizeof(len_name));
         os.write((char *) this->name.c_str(), len_name);
-        for (const auto &shape : this->buffer) {
+        for (const auto &shape : this->buffer) 
             shape->Serialize(os);
-        }
     }
 
     void DeserializeImpl(const std::string &filename) {
@@ -93,11 +92,11 @@ private:
         size_t len_name;
         is.read((char *) &len_name, sizeof(len_name));
 
-        char *name = new char[len_name + 1];
-        name[len_name] = 0;
-        is.read(name, len_name);
-        this->name = std::string(name);
-        delete [] name;
+        char *clear_name = new char[len_name + 1];
+        clear_name[len_name] = 0;
+        is.read(clear_name, len_name);
+        this->name = std::string(clear_name);
+        delete [] clear_name;
 
         FigureType type;
         while (true) {
