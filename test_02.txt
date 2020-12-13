@@ -1,0 +1,17 @@
+Load firstfile
+Print
+Add Rec
+-5 -5 0 -5 0 10 -5 10
+Add Rhomb
+0 0  2 -5  4 0  2 5
+Print
+Remove 6
+Print
+Undo
+Undo
+Print
+Remove 2
+Print
+Menu
+Save firstfile
+Exit

@@ -1,11 +1,24 @@
-1
-1
-1 4 4 5 3 2 0 1
-4
-3
-5
-4
-5
-34
-6
-0
+Create firstfile
+Add Rec
+0 0  5 0 5 10  0 10
+Add Trapeze
+0 0  4 0  3 2  1 2
+Print
+Add Rec
+5 5 10 5  10 12  5 12
+Add Rhomb
+-2 0  0 -3  2 0  0 3
+Menu
+Print
+Remove 3
+Print
+Undo
+Print
+Menu
+Save firstfile
+Menu
+Add Rhomb
+0 0  5 0  -3 2  4 5
+Add Rec
+gfg
+Exit
