@@ -8,60 +8,60 @@
 
 class Editor {
 public:
-    Editor() : Doc(nullptr), History() {};
+    Editor() : doc(nullptr), history() {};
 
     void CreateDocument(const std::string &name) {
-        Doc = std::make_shared<Document>(name);
+        this->doc = std::make_shared<Document>(name);
     }
 
-    void InsertPrimitive(FigureType type, Vertex *vertices) {
+    void InsertPrimitive(FigureType type, std::pair<double, double> *vertices) {
         std::shared_ptr<Command> command = std::shared_ptr<Command>(new InsertCommand(type, vertices));
-        command->SetDocument(Doc);
+        command->SetDocument(this->doc);
         command->Execute();
-        History.push(command);
+        this->history.push(command);
     }
 
     void RemovePrimitive(int id) {
         try {
             std::shared_ptr<Command> command = std::shared_ptr<Command>(new RemoveCommand(id));
-            command->SetDocument(Doc);
+            command->SetDocument(this->doc);
             command->Execute();
-            History.push(command);
+            this->history.push(command);
         } catch (std::exception &err) {
-            std::cout << err.what() << "\n";
+            std::cout << err.what() << std::endl;
             throw;
         }
     }
 
     void SaveDocument(const std::string &filename) {
-        Doc->Save(filename);
+        this->doc->Save(filename);
     }
 
     void LoadDocument(const std::string &filename) {
-        Doc = std::make_shared<Document>(filename);
-        Doc->Load(filename);
+        this->doc = std::make_shared<Document>(filename);
+        this->doc->Load(filename);
     }
 
     void Undo() {
-        if (History.empty()) {
+        if (this->history.empty()) 
             throw std::logic_error("empty");
-        }
-        std::shared_ptr<Command> lastCommand = History.top();
+
+        std::shared_ptr<Command> lastCommand = this->history.top();
         lastCommand->UnExecute();
-        History.pop();
+        this->history.pop();
     }
 
     void PrintDocument() {
-        Doc->Print();
+        this->doc->Print();
     }
 
     bool DocumentExist() {
-        return Doc != nullptr;
+        return this->doc != nullptr;
     }
 
     ~Editor() = default;
 
 private:
-    std::shared_ptr<Document> Doc;
-    std::stack<std::shared_ptr<Command>> History;
+    std::shared_ptr<Document> doc;
+    std::stack<std::shared_ptr<Command>> history;
 };
