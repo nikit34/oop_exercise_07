@@ -26,10 +26,10 @@ class Figure{
 
 std::pair<double, double> getCenter(
     const std::pair<double, double> *vertices,
-    int& n
+    uint16_t& n
     ) {
     double x = 0, y = 0;
-    for (int i = 0; i < n; ++i) {
+    for (uint16_t i = 0; i < n; ++i) {
         x += vertices[i].first;
         y += vertices[i].second;
     }
@@ -79,7 +79,7 @@ double dist(
     const std::pair<double, double> &a,
     const std::pair<double, double> &b
     ){
-    return sqrt( ((b.first - a.first) * (b.first - a.first)) + ((b.second - a.second) * (b.second - a.second)));
+    return sqrt(((b.first - a.first) * (b.first - a.first)) + ((b.second - a.second) * (b.second - a.second)));
 }
 
 bool operator==(

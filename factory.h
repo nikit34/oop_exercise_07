@@ -6,7 +6,7 @@ class Factory {
 
     Figure* FigureCreate(FigureType type) const {
         Figure* res;
-        if(type == Rec) {}
+        if(type == rec) {}
     }
 
 }
