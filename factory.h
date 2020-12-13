@@ -8,11 +8,11 @@ public:
     std::shared_ptr<Figure> FigureCreate(FigureType type) const {
         std::shared_ptr<Figure> res;
         if (type == rec) {
-            res = std::make_shared<Rectangle>();
+            res = std::make_shared<rec>();
         } else if (type == rhomb) {
-            res = std::make_shared<Rhombus>();
+            res = std::make_shared<rhomb>();
         } else if (type == trap) {
-            res = std::make_shared<Trapezoid>();
+            res = std::make_shared<trap>();
         }
         return res;
     }

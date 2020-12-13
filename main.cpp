@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string>
-
 #include "editor.h"
 
 
 
-void create(std::string& cmd, Editor &editor) {
-    if (editor.exist()) {
+void create(Editor &editor) {
+    std::string cmd;
+    if (editor.DocumentExist()) {
         std::cout << "Save old document? Yes/No ";
         std::cin >> cmd;
         if (cmd == "Yes" || cmd == "Y") {
@@ -74,7 +74,7 @@ void add(Editor &editor) {
     std::cout << "Enter shape type: \n\t- rec \n\t- trap \n\t- rhomb\n";
     std::cin >> type;
 
-    Vertex *vertices = new Vertex[4];
+    std::pair<double, double> *vertices = new std::pair<double, double>[4];
     if (type == "rec") {
         std::cout << "Enter coordinates separated by space\n";
         for (int i = 0; i < 4; ++i) {
@@ -98,7 +98,7 @@ void add(Editor &editor) {
             std::cin >> vertices[i];
         }
         try {
-            editor.InsertPrimitive(Trapeze, vertices);
+            editor.InsertPrimitive(trap, vertices);
             delete [] vertices;
             vertices = nullptr;
         } catch (std::logic_error &err) {
@@ -115,7 +115,7 @@ void add(Editor &editor) {
             std::cin >> vertices[i];
         }
         try {
-            editor.InsertPrimitive(Rhomb, vertices);
+            editor.InsertPrimitive(rhomb, vertices);
             delete [] vertices;
             vertices = nullptr;
         } catch (std::logic_error &err) {
@@ -215,7 +215,7 @@ int main() {
             }
             editor.PrintDocument();
         }
-        else if(cmd == "Exit"){
+        else if(cmd == 9){
             return 0;
         } else {
             std::cout << "You did not choose an action\n";
