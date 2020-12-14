@@ -1,14 +1,6 @@
-Menu
-Print
-Remove 3
-Print
-Undo
-Print
-Menu
-Save firstfile
-Menu
-Add Rhomb
+1
+2 firstfile
+1
+5 Rhomb
 0 0  5 0  -3 2  4 5
-Add Rec
-gfg
-Exit
+9

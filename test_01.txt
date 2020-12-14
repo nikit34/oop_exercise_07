@@ -1,24 +1,22 @@
 2 firstfile
-5 Rec
+5 rec
 0 0  5 0 5 10  0 10
-5 Trapeze
+5 trap
 0 0  4 0  3 2  1 2
 8
-5 Rec
+5 rec
 5 5 10 5  10 12  5 12
-5 Rhomb
+5 rhomb
 -2 0  0 -3  2 0  0 3
 1
 8
-6 3
+6 2
 8
 7
 8
 1
-Save firstfile
+4 firstfile
 1
-5 Rhomb
+5 rhomb
 0 0  5 0  -3 2  4 5
-5 Rec
-gfg
 9
