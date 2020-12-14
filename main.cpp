@@ -28,7 +28,7 @@ void create(Editor &editor) {
 
 void save(Editor &editor) {
     if (!editor.DocumentExist())
-        throw std::runtime_error("Document does not exist");
+        throw std::logic_error("Document does not exist");
 
     std::string filename;
     std::cin >> filename;
@@ -69,7 +69,7 @@ void load(Editor &editor) {
 
 void add(Editor &editor) {
     if (!editor.DocumentExist())
-        throw std::runtime_error("Document does not exist");
+        throw std::logic_error("Document does not exist");
     std::string type;
     std::cout << "Enter shape type: \n\t- rec \n\t- trap \n\t- rhomb\n";
     std::cin >> type;
@@ -78,7 +78,7 @@ void add(Editor &editor) {
     if (type == "rec") {
         std::cout << "Enter coordinates separated by space\n";
         for (int i = 0; i < 4; ++i) {
-            std::cin >> vertices[i];
+            std::cin >> vertices[i].first >> vertices[i].second;
         }
         try {
             editor.InsertPrimitive(rec, vertices);
@@ -95,7 +95,7 @@ void add(Editor &editor) {
     else if (type == "trap") {
         std::cout << "Enter the coordinates separated by space: ";
         for (int i = 0; i < 4; ++i) {
-            std::cin >> vertices[i];
+            std::cin >> vertices[i].first >> vertices[i].second;
         }
         try {
             editor.InsertPrimitive(trap, vertices);
@@ -112,7 +112,7 @@ void add(Editor &editor) {
     else if (type == "rhomb") {
         std::cout << "Enter the coordinates separated by a space: ";
         for (int i = 0; i < 4; ++i) {
-            std::cin >> vertices[i];
+            std::cin >> vertices[i].first >> vertices[i].second;
         }
         try {
             editor.InsertPrimitive(rhomb, vertices);
@@ -166,62 +166,71 @@ int main() {
     Editor editor;
     uint16_t cmd = 1;
 
-    while(cmd != 9) {
-        if (cmd == 1) {
-            menu();
-        }
-        else if (cmd == 2) {
-            create(editor);
-        }
-        else if (cmd == 3) {
-            try {
-                load(editor);
-            } catch (std::runtime_error &err) {
-                std::cout << err.what() << "\n\n";
-            }
-        }
-        else if (cmd == 4) {
-            try {
-                save(editor);
-            } catch (std::runtime_error &err) {
-            }
-        }
-        else if (cmd == 5) {
-            try {
-                add(editor);
-            } catch (std::runtime_error &err) {
-                std::cout << err.what() << "\n\n";
-            }
-        }
-        else if (cmd == 6) {
-            try {
-                remove(editor);
-            } catch (std::exception &err) {
-                std::cout << err.what() << std::endl;
-            }
-        }
-        else if (cmd == 7) {
-            try {
-                editor.Undo();
-                std::cout << "OK\n";
-            } catch (std::logic_error &err) {
-                std::cout << err.what() << "\n\n";
-            }
-        }
-        else if (cmd == 8) {
-            if (!editor.DocumentExist()) {
-                std::cout << "Document does not exist" << "\n\n";
-                continue;
-            }
-            editor.PrintDocument();
-        }
-        else if(cmd == 9){
-            return 0;
-        } else {
-            std::cout << "You did not choose an action\n";
-        }
+    menu();
+    while(true) {
         std::cin >> cmd;
-        std::cout << std::endl;
+        switch(cmd){
+            case 1:{
+                menu();
+                break;
+            }
+            case 2:{
+                create(editor);
+                break;
+            }
+            case 3:{
+                try {
+                    load(editor);
+                } catch (std::runtime_error &err) {
+                    std::cout << err.what() << std::endl;
+                }
+                break;
+            }
+            case 4:{
+                try {
+                    save(editor);
+                } catch (std::runtime_error &err) {
+                    std::cout << err.what() << std::endl;
+                }
+                break;
+            }
+            case 5:{
+                try {
+                    add(editor);
+                } catch (std::runtime_error &err) {
+                    std::cout << err.what() << std::endl;
+                }
+                break;
+            }
+            case 6:{
+                try {
+                    remove(editor);
+                } catch (std::exception &err) {
+                    std::cout << err.what() << std::endl;
+                }
+                break;
+            }
+            case 7:{
+                try {
+                    editor.Undo();
+                    std::cout << "OK" << std::endl;
+                } catch (std::logic_error &err) {
+                    std::cout << err.what() << std::endl;
+                }
+                break;
+            }
+            case 8:{
+                if (!editor.DocumentExist()) {
+                    std::cout << "Document does not exist" << std::endl;
+                    break;
+                }
+                editor.PrintDocument();
+                break;
+            }
+            case 9:{
+                return 0;
+            }
+        }
     }
     return 0;
 }

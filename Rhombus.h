@@ -38,7 +38,7 @@ public:
     }
 
     std::pair<double, double> Center() const override {
-        int num = 4;
+        uint16_t num = 4;
         return getCenter(this->vertices, num);
     }
 
@@ -59,7 +59,7 @@ public:
     }
 
     void Serialize(std::ofstream &os) const override{
-        FigureType type = Rhomb;
+        FigureType type = rhomb;
         os.write((char *) &type, sizeof(type));
         os.write((char *) &id, sizeof(id));
         for (uint16_t i = 0; i < 4; ++i) {

@@ -43,7 +43,7 @@ public:
     }
 
     void Undo() {
-        if (this->history.empty()) 
+        if (this->history.empty())
             throw std::logic_error("empty");
 
         std::shared_ptr<Command> lastCommand = this->history.top();

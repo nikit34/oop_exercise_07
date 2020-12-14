@@ -1,6 +1,10 @@
 #pragma once
 
 #include "figures.h"
+#include "Rectangle.h"
+#include "Rhombus.h"
+#include "Trapezoid.h"
+
 
 
 class Factory {
@@ -8,11 +12,11 @@ public:
     std::shared_ptr<Figure> FigureCreate(FigureType type) const {
         std::shared_ptr<Figure> res;
         if (type == rec) {
-            res = std::make_shared<rec>();
+            res = std::make_shared<Rectangle>();
         } else if (type == rhomb) {
-            res = std::make_shared<rhomb>();
+            res = std::make_shared<Rhombus>();
         } else if (type == trap) {
-            res = std::make_shared<trap>();
+            res = std::make_shared<Trapezoid>();
         }
         return res;
     }
@@ -26,7 +30,6 @@ public:
         } else if (type == trap) {
             res = std::make_shared<Trapezoid>(vertices[0], vertices[1], vertices[2], vertices[3], id);
         }
-
         return res;
     }
 };

@@ -80,7 +80,7 @@ private:
         size_t len_name = this->name.size();
         os.write((char *) &len_name, sizeof(len_name));
         os.write((char *) this->name.c_str(), len_name);
-        for (const auto &shape : this->buffer) 
+        for (const auto &shape : this->buffer)
             shape->Serialize(os);
     }
 

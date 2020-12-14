@@ -14,8 +14,6 @@ public:
 
     Trapezoid(std::pair<double, double> &a, std::pair<double, double> &b, std::pair<double, double> &c, std::pair<double, double> &d, uint16_t id) :
     id{id}, vertices{new std::pair<double, double>[4]} {
-        auto AB = dist(a, b);
-        auto AD = dist(a, d);
         if (a == b || a == c || b == c || a == d || b == d || c == d ||
             collinear(a, b, c, a) || collinear(a, b, d, a) || collinear(a, c, d, a)
             || collinear(b, c, d, b)) {

@@ -14,12 +14,11 @@ enum FigureType {
     trap,
 };
 
-class Figure{
+class Figure {
     public:
     virtual double Area() const = 0;
     virtual std::pair<double, double> Center() const = 0;
     virtual std::ostream& Print(std::ostream& out) const = 0;
-    virtual void Serialize(std::ofstream& os) const = 0;
     virtual void Serialize(std::ofstream& os) const = 0;
     virtual void Deserialize(std::ifstream& is) = 0;
     virtual int getId() const = 0;
